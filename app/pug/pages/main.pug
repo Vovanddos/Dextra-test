@@ -1,0 +1,189 @@
+extends ../layouts/default.pug
+
+
+
+block main
+
+    <!-----------VARIABLES----------->
+    script let pageName = 'main';
+    -
+        const filterItem = [
+            {
+                name: 'Cuba',
+                filter: 'culture',
+                urlWebp: 'images/2.webp',
+                urlJpg: 'images/2.jpg',
+            },
+
+            {
+                name: 'Russia',
+                filter: 'extreme atmosphere',
+                urlWebp: 'images/3.webp',
+                urlJpg: 'images/3.jpg',
+            },
+
+            {
+                name: 'Latin America',
+                filter: 'culture people big-stretch',
+                urlWebp: 'images/13.webp',
+                urlJpg: 'images/13.jpg',
+            },
+
+            {
+                name: 'England',
+                filter: 'culture',
+                urlWebp: 'images/4.webp',
+                urlJpg: 'images/4.jpg',
+            },
+
+            {
+                name: 'Norway',
+                filter: 'atmosphere',
+                urlWebp: 'images/1.webp',
+                urlJpg: 'images/1.jpg',
+            },
+            {
+                name: 'Switzerland',
+                filter: 'extreme people',
+                urlWebp: 'images/5.webp',
+                urlJpg: 'images/5.jpg',
+            },
+
+            {
+                name: 'China',
+                filter: 'culture',
+                urlWebp: 'images/6.webp',
+                urlJpg: 'images/6.jpg',
+            },
+            {
+                name: 'Germany',
+                filter: 'culture',
+                urlWebp: 'images/7.webp',
+                urlJpg: 'images/7.jpg',
+            },
+
+            {
+                name: 'Japan',
+                filter: 'culture',
+                urlWebp: 'images/8.webp',
+                urlJpg: 'images/8.jpg',
+            },
+            {
+                name: 'Australia',
+                filter: 'extreme people',
+                urlWebp: 'images/9.webp',
+                urlJpg: 'images/9.jpg',
+            },
+
+            {
+                name: 'India',
+                filter: 'culture',
+                urlWebp: 'images/10.webp',
+                urlJpg: 'images/10.jpg',
+            },
+            {
+                name: 'Finland',
+                filter: 'atmosphere extreme',
+                urlWebp: 'images/11.webp',
+                urlJpg: 'images/11.jpg',
+            },
+
+            {
+                name: 'New Zealand',
+                filter: 'atmosphere',
+                urlWebp: 'images/12.webp',
+                urlJpg: 'images/12.jpg',
+            },
+        ];
+
+    - const categories = [{ name: 'Все страны', dataId: 'all'}, { name: 'Культура', dataId: 'culture'}, { name: 'Атмосфера', dataId: 'atmosphere'}, { name: 'Экстрим', dataId: 'extreme'}, { name: 'Люди', dataId: 'people'},]
+
+    .page
+
+        <!-----------HEADER----------->
+
+        header.header
+            .wrapper
+                .header__inner
+                    svg.logo
+                        use(xlink:href='images/svg/sprite.svg#logo')
+                    .header__content
+                        .header__title adventure
+                        .header__subtitle оставь свой след, где его еще нет...
+
+        <!-----------FILTERS----------->
+
+        .filter
+            .wrapper
+                ul.filter__inner
+                    each value in categories
+                        li.filter__item(class=(value.dataId === "all" ? "active" : undefined), data-id=`${value.dataId}`) #{value.name}
+
+        <!-----------GALLERY----------->
+
+        .gallery
+            each value in filterItem
+                .gallery__item(class=`${value.filter}`)
+                    .swiper-container
+                        .swiper-wrapper
+                            .swiper-slide
+                                if value.name == 'Latin America'
+                                    .loader
+                                        picture
+                                            source.swiper-lazy(data-srcset='images/13.webp' srcset='images/1x1.png' type='image/webp')
+                                            img.swiper-lazy(loading='lazy' data-src='images/13.jpg' src='images/1x1.png' alt='Cuba')
+                                        .swiper-lazy-preloader.swiper-lazy-preloader-black
+                                    .gallery__content.align_start.gallery_blackout
+                                        .gallery__title Latin America
+                                        .gallery__text
+                                            ol
+                                                li Honduras
+                                                li Columbia
+                                                li Panama
+                                                li Brazil
+                                                li Peru
+                                else
+                                    .loader
+                                        picture
+                                            source.swiper-lazy(data-srcset=`${value.urlWebp}` srcset='images/1x1.png' type='image/webp')
+                                            img.swiper-lazy(loading='lazy' data-src=`${value.urlJpg}` src='images/1x1.png' alt=`${value.name}`)
+                                        .swiper-lazy-preloader.swiper-lazy-preloader-black
+                                    .gallery__content.gallery_blackout
+                                        .gallery__title #{value.name}
+                            .swiper-slide
+
+                                .slide__text
+                                    | Хэмингуэй, став весьма знаменитым, естественно, мог выбрать любое место
+                                    |  в мире. Почему же он 22 года прожил
+                                    |  в Гаване? Потому что это свобода!
+                                .gallery__content
+                                    .gallery__content_bottom
+                                        | #{value.name}
+                            .swiper-slide
+                                .loader
+                                    picture
+                                        source.swiper-lazy(data-srcset='images/sliderImg1.webp' srcset='images/1x1.png' type='image/webp')
+                                        img.swiper-lazy(loading='lazy' data-src='images/sliderImg1.jpg' src='images/1x1.png' alt='Cuba')
+                                    .swiper-lazy-preloader.swiper-lazy-preloader-black
+                                .gallery__content.gallery_blackout
+                                    svg.loupe.popup-trigger(data-path='picture')
+                                        use(xlink:href='images/svg/sprite.svg#loupe')
+                                    .gallery__content_bottom
+                                        | #{value.name}
+                            .swiper-slide
+                                .loader
+                                    picture
+                                        source.swiper-lazy(data-srcset='images/sliderImg2.webp' srcset='images/1x1.png' type='image/webp')
+                                        img.swiper-lazy(loading='lazy' data-src='images/sliderImg2.jpg' src='images/1x1.png' alt='Cuba')
+                                    .swiper-lazy-preloader.swiper-lazy-preloader-black
+                                .gallery__content.gallery_blackout
+                                    svg.play.popup-trigger(data-path='video')
+                                        use(xlink:href='images/svg/sprite.svg#play')
+                                    .gallery__content_bottom
+                                        | #{value.name}
+                        .gallery__content.gallery__contentinner
+                            .gallery__arrow
+                                svg.arrow.arrow_left
+                                    use(xlink:href='images/svg/sprite.svg#arrowLeft')
+                                svg.arrow.arrow_right
+                                    use(xlink:href='images/svg/sprite.svg#arrowRight')

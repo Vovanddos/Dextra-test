@@ -1,0 +1,59 @@
+-var cmsTpl = '/'
+
+mixin svg(id,cls)
+    -let cls = cls ? ' ' + cls : ''
+    svg(class='icon icon-' + id + cls width="100%" height="100%" xmlns="http://www.w3.org/2000/svg")
+        use(xlink:href=cmsTpl + 'images/svg/sprite.svg#' + id)
+
+doctype html
+html(lang='ru')
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport', content='width=device-width,initial-scale=1,shrink-to-fit=no,maximum-scale=1,height=device-height,viewport-fit=cover')
+        title Dextra
+        base(href='/')
+        meta(name='description', content="")
+        meta(name='keywords', content="")
+        meta(property='og:title', content="")
+        meta(property="og:description" content="")
+        meta(property='og:type', content='website')
+        meta(property='og:url', content="")
+        meta(property='og:image', content=cmsTpl + 'assets/images/logo.png')
+        meta(name='theme-color' content="#fff")
+        link(rel='stylesheet' href=cmsTpl + 'css/vendor.min.css')
+        link(rel='stylesheet' href=cmsTpl + 'css/common.min.css')
+    body
+
+
+        block main
+
+        <!-----------FOOTER----------->
+
+                footer.footer
+                  .wrapper
+                    .footer__inner
+                      .footer__copyright &copy;2013-2015
+                      .footer__seekers
+                        | Здесь наследили
+                        span  соискатели:)
+                        svg.logoFooter
+                          use(xlink:href='images/sprite.svg#footerLogo')
+
+        <!-----------MODALS----------->
+                .modals
+                  .modal-overlay
+                    .modal.modal--1(data-target='picture')
+                      .close
+                        svg.popup-modal__close
+                          use(xlink:href='images/svg/sprite.svg#close')
+                      img.popup__inner(src='images/sliderImg1.jpg' alt='')
+                    .modal.modal--2(data-target='video')
+                      .close
+                        svg.popup-modal__close
+                          use(xlink:href='images/svg/sprite.svg#close')
+                      iframe.popup__inner.video(width='740' height='480' src='https://www.youtube.com/embed/YtZZ-hxz9TI' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+
+
+                script(src=cmsTpl + 'js/vendor.min.js')
+                script(src=cmsTpl + 'js/common.min.js')
